@@ -56,7 +56,18 @@ $.when($.ready).then(function() {
             dataType: 'json',
             success: function(data) {
                 if (data.status == 'ok') {
-                    window.location = '/main';
+                    $('[data-action="massage"]').html('Data successefully added');
+                    $('[data-action="massage"]').removeClass('alert-danger');
+                    $('[data-action="massage"]').addClass('alert-success');
+                    $('[data-action="massage"]').show();
+
+                    let redirect = function() { 
+                        window.location = '/main'; 
+                    };
+
+                    $('[data-action="add"]').css({'pointer-events' : 'none', 'opacity' : '0.5'});
+
+                    setTimeout(redirect, 1500);
                 } else {
                     $('[data-action="massage"]').html(data.status);
                     $('[data-action="massage"]').show();
